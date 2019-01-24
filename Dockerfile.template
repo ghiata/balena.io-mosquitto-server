@@ -1,0 +1,13 @@
+FROM /%%BALENA_ARCH%%-alpine
+
+# Install packages
+RUN apk --no-cache add mosquitto 
+
+# Expose MQTT port
+EXPOSE 1883
+
+ENV PATH /usr/sbin:$PATH
+
+ENV INITSYSTEM on
+
+ENTRYPOINT ["/usr/sbin/mosquitto"]
