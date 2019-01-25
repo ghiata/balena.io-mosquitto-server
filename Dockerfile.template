@@ -1,7 +1,13 @@
 FROM /%%BALENA_ARCH%%-alpine
 
+# Configure mosquitto username and password with environmental variables
+ENV USERNAME username
+ENV PASSWORD password
+
 # Install packages
 RUN apk --no-cache add mosquitto 
+
+RUN touch /etc/mosquitto/password && mosquitto_passwd -b /etc/mosquitto/password ${USERNAME} ${PASSWORD}}
 
 # Expose MQTT port
 EXPOSE 1883
